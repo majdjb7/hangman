@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { render } from '@testing-library/react';
-import LetterHolder from './components/LetterHolder';
+import Letters from './components/Letters';
+import Solution from './components/Solution';
+import Score from './components/Score';
 
 export class App extends Component {
   render() {
@@ -10,7 +12,9 @@ export class App extends Component {
     return(
       <div>
         <div>Hangman</div>
-        <LetterHolder/>
+        <Score/>
+        <Solution/>
+        <Letters/>
       </div>
     )
 
