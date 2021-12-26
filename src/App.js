@@ -8,12 +8,48 @@ import Score from './components/Score';
 export class App extends Component {
   constructor() {
     super()
-    let letterStatus = this.generateLetterStatuses();
+    // let letterStatus = this.generateLetterStatuses(); //NEED THIS FOR DYNAMIC
+    let letterStatus = {
+      A: false,
+      B: false,
+      C: false,
+      D: false,
+      E: true,
+      F: false,
+      G: false,
+      H: false,
+      I: false,
+      J: false,
+      K: false,
+      L: false,
+      M: false,
+      N: false,
+      O: false,
+      P: false,
+      Q: false,
+      R: false,
+      S: true,
+      T: false,
+      U: false,
+      V: false,
+      W: false,
+      X: false,
+      Y: true,
+      Z: false
+    }
     this.state = {
       letterStatus: letterStatus,
-      solution: {word: "WORD", hint: "HINT!"},
+      solution: {word: "WORDY", hint: "HINT!"},
       score: 100
     }
+  }
+
+  getSolution = () => {
+    let solution = ""
+    for(let letter of this.state.solution.word) {
+      this.state.letterStatus[letter] ? solution += letter : solution += "_ "
+    }
+    return solution
   }
 
   generateLetterStatuses = function() {
@@ -29,12 +65,14 @@ export class App extends Component {
   this.generateLetterStatuses()
   console.log(this.state.letterStatus)
 
+    let newS = this.getSolution()
 
+    console.log(this.getSolution())
     return(
       <div>
         <div>Hangman</div>
         <Score score={this.state.score}/>
-        <Solution letterStatus={this.state.letterStatus} solution={this.state.solution}/>
+        <Solution letterStatus={this.state.letterStatus} solution={newS}/>
         <Letters letterStatus={this.state.letterStatus}/>
       </div>
     )

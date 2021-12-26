@@ -15,3 +15,7 @@ code {
 .hint {
   font-style: italic;
 }
+
+.true {
+  text-decoration: line-through;
+}
