@@ -16,8 +16,7 @@ class Letters extends Component {
         return (
             <div>
                 <div>Available Letters</div>
-                {this.state.alphabets.map(a => <Letter letter={a}/>)}
-                {/* <Letter alphabets={this.state.alphabets}/> */}
+                {Object.keys(this.props.letterStatus).map(a => <Letter key={a} letter={a} />)}
             </div>
         )
     }
