@@ -8,6 +8,11 @@ class Letters extends Component {
             alphabets: []
         }
     }
+    
+      selectLetter = (letter) => {
+          this.props.selectLetter(letter)
+      }
+
     render() {
         for(let i=0; i<26; i++) {
             let letter = (i+10).toString(36).toUpperCase()
@@ -16,7 +21,7 @@ class Letters extends Component {
         return (
             <div>
                 <div>Available Letters</div>
-                {Object.keys(this.props.letterStatus).map(a => <Letter key={a} letter={a} status={this.props.letterStatus[a]}/>)}
+                {Object.keys(this.props.letterStatus).map(a => <Letter key={a} letter={a} status={this.props.letterStatus[a]} selectLetter={this.selectLetter}/>)}
             </div>
         )
     }

@@ -19,3 +19,15 @@ code {
 .true {
   text-decoration: line-through;
 }
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: rgb(16, 223, 16);
+}
