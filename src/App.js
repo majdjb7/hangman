@@ -69,7 +69,6 @@ export class App extends Component {
         <Solution letterStatus={this.state.letterStatus} solution={newS}/>
         <Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter}/>
         {(won || this.state.score <=0) ? <EndGame score={this.state.score} word={this.state.solution.word}/> : <div />}
-        {/* {this.state.score <=0 ? alert(" YOU LOST") : <div/>} */}
       </div>
     )
 
