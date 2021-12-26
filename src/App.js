@@ -4,43 +4,20 @@ import { render } from '@testing-library/react';
 import Letters from './components/Letters';
 import Solution from './components/Solution';
 import Score from './components/Score';
+import EndGame from './components/EndGame';
 
 export class App extends Component {
   constructor() {
     super()
-    let letterStatus = this.generateLetterStatuses(); //NEED THIS FOR DYNAMIC
-    // let letterStatus = {
-    //   A: false,
-    //   B: false,
-    //   C: false,
-    //   D: false,
-    //   E: true,
-    //   F: false,
-    //   G: false,
-    //   H: false,
-    //   I: false,
-    //   J: false,
-    //   K: false,
-    //   L: false,
-    //   M: false,
-    //   N: false,
-    //   O: false,
-    //   P: false,
-    //   Q: false,
-    //   R: false,
-    //   S: true,
-    //   T: false,
-    //   U: false,
-    //   V: false,
-    //   W: false,
-    //   X: false,
-    //   Y: true,
-    //   Z: false
-    // }
+    let letterStatus = this.generateLetterStatuses();
+  
     this.state = {
       letterStatus: letterStatus,
       solution: {word: "WORDY", hint: "HINT!"},
-      score: 100
+      score: 100,
+      gameWon: false,
+      gameLost: false,
+      solutionWithBlanks: ""
     }
   }
 
@@ -70,20 +47,29 @@ export class App extends Component {
     this.setState({letterStatus: newStatus,
                   score: newScore})
   }
+
+  checkIfGameWon = (solution) => {
+      let won = false
+      if(!solution.includes("_")) {
+        won = true
+      }
+      return won
+  }
   
   render() {
   this.generateLetterStatuses()
-  console.log(this.state.letterStatus)
 
     let newS = this.getSolution()
+    let won = this.checkIfGameWon(newS)
 
-    console.log(this.getSolution())
     return(
       <div>
         <div>Hangman</div>
         <Score score={this.state.score}/>
         <Solution letterStatus={this.state.letterStatus} solution={newS}/>
         <Letters letterStatus={this.state.letterStatus} selectLetter={this.selectLetter}/>
+        {(won || this.state.score <=0) ? <EndGame score={this.state.score} word={this.state.solution.word}/> : <div />}
+        {/* {this.state.score <=0 ? alert(" YOU LOST") : <div/>} */}
       </div>
     )
 
